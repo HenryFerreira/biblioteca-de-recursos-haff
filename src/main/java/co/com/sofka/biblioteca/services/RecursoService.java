@@ -31,5 +31,5 @@ public interface RecursoService {
     Los recursos están clasificados por tipo de recurso (libros, revistas, fichas, etc)
     pero también por área temática (ciencias, naturaleza, historia, etc).*/
     Flux<Recurso> recomendarRecursosByTipo(String tipo);
-
+    Flux<Recurso> recomendarRecursosByCategoria(String categoria);
 }
