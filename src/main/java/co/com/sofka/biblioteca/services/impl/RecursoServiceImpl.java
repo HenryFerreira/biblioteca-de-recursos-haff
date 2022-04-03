@@ -47,4 +47,14 @@ public class RecursoServiceImpl implements RecursoService {
         return this.repository.findById(id);
     }
     //----------------------------------------------//
+
+   @Override
+    public Mono<String> disponibilidadById(String id){
+        var recurso = this.repository.findById(id);
+        var mensaje = recurso.map(p -> {
+            var respuesta = p.getEstado()? "Recurso Disponible" : "Recurso Prestado " + p.getFechaPrestamo();
+            return respuesta;
+        });
+        return mensaje;
+    }
 }

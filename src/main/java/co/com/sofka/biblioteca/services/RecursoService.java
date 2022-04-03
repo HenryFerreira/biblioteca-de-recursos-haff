@@ -18,6 +18,9 @@ public interface RecursoService {
     Mono<Recurso> findById(String id);
     //----------------------------------------------//
 
+    /*Consultar disponibilidad de un recurso indicando en un mensaje si esta disponible o no.
+    en caso de no estar disponible presentar la fecha del préstamo actual del ultimo ejemplar.*/
+    Mono<String> disponibilidadById(String id);
 
 
 }

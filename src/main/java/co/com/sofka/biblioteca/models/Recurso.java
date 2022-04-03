@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.UUID;
 
 @Document(collection = "recursos")
@@ -15,6 +16,14 @@ public class Recurso {
     private LocalDate fechaPrestamo;
     private String tipoRecurso;
     private String categoriaRecurso;
+
+    public Recurso(String nombre, Boolean estado, LocalDate fechaPrestamo, String tipoRecurso, String categoriaRecurso) {
+        this.nombre = Objects.requireNonNull(nombre);
+        this.estado = estado;
+        this.fechaPrestamo =  LocalDate.now();;
+        this.tipoRecurso = Objects.requireNonNull(tipoRecurso);
+        this.categoriaRecurso = Objects.requireNonNull(categoriaRecurso);
+    }
 
     public String getId() {
         return id;

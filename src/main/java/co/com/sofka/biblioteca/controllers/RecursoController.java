@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:8080")
 @RestController
 public class RecursoController {
     @Autowired
@@ -47,4 +47,10 @@ public class RecursoController {
         return this.service.findById(id);
     }
     //----------------------------------------------//
+
+    @GetMapping("/recurso/{id}/disponibilidad")
+    private Mono<String> disponibilidadById(@PathVariable("id") String id) {
+        return this.service.disponibilidadById(id);
+    }
+
 }
