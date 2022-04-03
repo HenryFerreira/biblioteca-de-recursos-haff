@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDate;
+
 @Service
 public class RecursoServiceImpl implements RecursoService {
     @Autowired
@@ -54,6 +56,19 @@ public class RecursoServiceImpl implements RecursoService {
         var mensaje = recurso.map(p -> {
             var respuesta = p.getEstado()? "Recurso Disponible" : "Recurso Prestado " + p.getFechaPrestamo();
             return respuesta;
+        });
+        return mensaje;
+    }
+
+    public Mono<String> perstarRecursoById(String id){
+        var recurso = this.repository.findById(id);
+        var mensaje = recurso.flatMap(p -> {
+            if(!p.getEstado()){
+                return Mono.just("Recurso Prestado " + p.getFechaPrestamo());
+            }
+            p.setEstado(false);
+            p.setFechaPrestamo(LocalDate.now());
+            return repository.save(p).then(Mono.just("Recurso Disponible \n El prestamo se realizo con exito. Fecha de Prestamo: " + p.getFechaPrestamo()));
         });
         return mensaje;
     }

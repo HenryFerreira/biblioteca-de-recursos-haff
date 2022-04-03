@@ -53,4 +53,9 @@ public class RecursoController {
         return this.service.disponibilidadById(id);
     }
 
+    @PutMapping("/recurso/{id}/prestamo")
+    private Mono<String> perstarRecursoById(@PathVariable("id") String id) {
+        return this.service.perstarRecursoById(id);
+    }
+
 }
