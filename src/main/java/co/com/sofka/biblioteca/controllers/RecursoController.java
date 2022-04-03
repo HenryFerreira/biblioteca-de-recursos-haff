@@ -74,4 +74,9 @@ public class RecursoController {
         return this.service.recomendarRecursosByCategoriaAndTipo(categoria, tipo);
     }
 
+    @PutMapping("/recurso/{id}/devolucion")
+    private Mono<String> devolverRecursoById(@PathVariable("id") String id) {
+        return this.service.devolverRecursoById(id);
+    }
+
 }

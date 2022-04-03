@@ -33,4 +33,10 @@ public interface RecursoService {
     Flux<Recurso> recomendarRecursosByTipo(String tipo);
     Flux<Recurso> recomendarRecursosByCategoria(String categoria);
     Flux<Recurso> recomendarRecursosByCategoriaAndTipo(String categoria, String tipo);
+
+    /*Devolver un recurso que se encontraba prestado,
+    obviamente si un recurso no se encuentra en préstamo no podrá ser devuelto.
+    Indicar el resultado con un mensaje.*/
+    Mono<String> devolverRecursoById(String id);
+
 }

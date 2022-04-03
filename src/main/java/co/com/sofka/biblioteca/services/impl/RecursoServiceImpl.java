@@ -68,7 +68,8 @@ public class RecursoServiceImpl implements RecursoService {
             }
             p.setEstado(false);
             p.setFechaPrestamo(LocalDate.now());
-            return repository.save(p).then(Mono.just("Recurso Disponible \n El prestamo se realizo con exito. Fecha de Prestamo: " + p.getFechaPrestamo()));
+            return repository.save(p).then(Mono.just("Recurso Disponible." +
+                    "\nEl prestamo se realizo con exito. Fecha de Prestamo: " + p.getFechaPrestamo()));
         });
         return mensaje;
     }
@@ -84,4 +85,17 @@ public class RecursoServiceImpl implements RecursoService {
                 p.getCategoriaRecurso().equals(categoria) && p.getTipoRecurso().equals(tipo));
     }
 
+    public Mono<String> devolverRecursoById(String id){
+        var recurso = this.repository.findById(id);
+        var mensaje = recurso.flatMap(p -> {
+            if(p.getEstado()){
+                return Mono.just("El recurso NO esta PRESTADO!!");
+            }
+            p.setEstado(true);
+            p.setFechaPrestamo(LocalDate.now());
+            return repository.save(p).then(Mono.just("Recurso DEVUELTO." +
+                    "\n La devolucion se realizo con exito. Fecha de Prestamo: " + p.getFechaPrestamo()));
+        });
+        return mensaje;
+    }
 }
