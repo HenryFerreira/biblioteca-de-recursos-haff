@@ -68,4 +68,10 @@ public class RecursoController {
         return this.service.recomendarRecursosByCategoria(categoria);
     }
 
+    @GetMapping("/recurso/{categoriaRecurso}/{tipoRecurso}/recomendacion/categoriaAndTipo")
+    private Flux<Recurso> recomendarRecursosByCategoriaAndTipo
+            (@PathVariable("categoriaRecurso") String categoria, @PathVariable("tipoRecurso") String tipo) {
+        return this.service.recomendarRecursosByCategoriaAndTipo(categoria, tipo);
+    }
+
 }

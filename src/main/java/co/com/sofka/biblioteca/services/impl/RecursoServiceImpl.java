@@ -79,5 +79,9 @@ public class RecursoServiceImpl implements RecursoService {
     public Flux<Recurso> recomendarRecursosByCategoria(String categoria){
         return this.repository.findAll().filter(p -> p.getCategoriaRecurso().equals(categoria));
     }
+    public Flux<Recurso> recomendarRecursosByCategoriaAndTipo(String categoria, String tipo){
+        return this.repository.findAll().filter(p ->
+                p.getCategoriaRecurso().equals(categoria) && p.getTipoRecurso().equals(tipo));
+    }
 
 }

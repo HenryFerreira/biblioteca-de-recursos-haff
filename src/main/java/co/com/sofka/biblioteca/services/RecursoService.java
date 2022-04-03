@@ -32,4 +32,5 @@ public interface RecursoService {
     pero también por área temática (ciencias, naturaleza, historia, etc).*/
     Flux<Recurso> recomendarRecursosByTipo(String tipo);
     Flux<Recurso> recomendarRecursosByCategoria(String categoria);
+    Flux<Recurso> recomendarRecursosByCategoriaAndTipo(String categoria, String tipo);
 }
