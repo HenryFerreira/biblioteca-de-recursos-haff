@@ -72,4 +72,10 @@ public class RecursoServiceImpl implements RecursoService {
         });
         return mensaje;
     }
+
+    public Flux<Recurso> recomendarRecursosByTipo(String tipo){
+        return this.repository.findAll().filter(p -> p.getTipoRecurso().equals(tipo));
+    }
+
+
 }

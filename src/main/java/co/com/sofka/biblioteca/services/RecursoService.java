@@ -27,4 +27,9 @@ public interface RecursoService {
     (no es necesario llevar el historia de prestamos).*/
     Mono<String> perstarRecursoById(String id);
 
+    /*Recomendar un listado de recursos al usuario a partir del tipo de recurso, del área temática o de los dos.
+    Los recursos están clasificados por tipo de recurso (libros, revistas, fichas, etc)
+    pero también por área temática (ciencias, naturaleza, historia, etc).*/
+    Flux<Recurso> recomendarRecursosByTipo(String tipo);
+
 }
